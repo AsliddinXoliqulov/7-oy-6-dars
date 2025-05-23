@@ -1,6 +1,6 @@
 
 import { Briefcase } from 'lucide-react';
-import doczon from '../assets/doczon.png'
+import doczon from '../assets/docZon.png'
 import copy from '../assets/copy.png'
 
 function Features() {
