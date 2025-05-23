@@ -44,7 +44,7 @@ const Admin = () => {
 
   return (
     <div className="max-w-md w-[90%] mx-auto mt-10 p-4 border rounded shadow-sm bg-white">
-      <h2 className="text-xl font-bold mb-4 text-center">Card qo‘shish</h2>
+      <h2 className="text-xl font-bold mb-4 text-center">Card qo‘shish uchun</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
