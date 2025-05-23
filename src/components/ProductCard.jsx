@@ -11,7 +11,6 @@ const ZonCardsScroll = () => {
   const targetRef = useRef();
   const [cartItems, setCartItems] = useState([]);
 
-  // API dan ma'lumotlarni olish funksiyasi
   const fetchCards = async ({ pageParam = 1 }) => {
     const apiUrl = import.meta.env.VITE_API_URL;
     const res = await axios.get(`${apiUrl}/ZonCards?page=${pageParam}&limit=${LIMIT}`);
@@ -21,7 +20,6 @@ const ZonCardsScroll = () => {
     };
   };
 
-  // React Query useInfiniteQuery bilan ma'lumotlarni olish
   const {
     data,
     isLoading,
@@ -35,13 +33,11 @@ const ZonCardsScroll = () => {
     getNextPageParam: (lastPage) => lastPage.nextPage,
   });
 
-  // Cartni localStorage'dan olish
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItems(savedCart);
   }, []);
 
-  // IntersectionObserver scroll oxirida yangi ma'lumot yuklash uchun
   useEffect(() => {
     if (!targetRef.current) return;
 
@@ -60,7 +56,6 @@ const ZonCardsScroll = () => {
     };
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  // Cartga qo'shish funksiyasi
   const addToCart = (card) => {
     const isAlreadyInCart = cartItems.some((item) => item.id === card.id);
     if (!isAlreadyInCart) {
@@ -71,32 +66,22 @@ const ZonCardsScroll = () => {
     }
   };
 
-  // Like tugmasini toggle qilish
   const toggleLike = async (id, currentLiked) => {
     try {
       const updated = { liked: !currentLiked };
       const apiUrl = import.meta.env.VITE_API_URL;
       await axios.put(`${apiUrl}/ZonCards/${id}`, updated);
 
-      // Mahsulotlar ro'yhatini yangilash
       const allCards = data?.pages.flatMap((page) => page.data) || [];
       const updatedCards = allCards.map((card) =>
         card.id === id ? { ...card, liked: !currentLiked } : card
       );
-
-      // React Query cache yangilash uchun 
-      // Oddiygina ma'lumotni yangilash uchun react-query uchun `queryClient` kerak,
-      // ammo bu misolda oddiy usul sifatida setState o'rniga yangi sahifalarni yangilash qiyin.
-      // Shuning uchun sahifalarni qayta fetch qilish mumkin yoki
-      // kichik qo'lda holatni boshqarish uchun keyinroq react-query cache update qilishingiz mumkin.
-      // Bu yerda qisqaroq yechim uchun hech narsa qilmayapmiz.
 
     } catch (error) {
       console.error("Like o'zgartirishda xatolik:", error);
     }
   };
 
-  // Barcha sahifalardagi kartalarni birlashtirish
   const allCards = data?.pages.flatMap((page) => page.data) || [];
 
   const skeleton = () =>
@@ -180,7 +165,6 @@ const ZonCardsScroll = () => {
         <div className="mt-4">{skeleton()}</div>
       )}
 
-      {/* Scroll oxiridagi element - IntersectionObserver uchun */}
       <div ref={targetRef} className="h-[1px]"></div>
     </div>
   );
