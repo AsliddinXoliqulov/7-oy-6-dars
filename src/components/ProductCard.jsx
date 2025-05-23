@@ -116,7 +116,7 @@ const ZonCardsScroll = () => {
                 className="shadow-md rounded-2xl p-3 relative hover:shadow-lg transition duration-300 sm:max-w-60 bg-white"
               >
                 {card.sale && (
-                  <span className="absolute bottom-16 left-2 bg-red-200 text-red-500 text-xs px-2 py-0.5 rounded-2xl font-bold">
+                  <span className="absolute bottom-15 left-2 bg-red-200 text-red-500 text-xs px-2 py-0.5 rounded-2xl font-bold">
                     Нет в наличии
                   </span>
                 )}
@@ -125,10 +125,10 @@ const ZonCardsScroll = () => {
                   alt={card.title}
                   className="w-full h-40 object-contain mb-2 rounded-t-xl"
                 />
-                <h2 className="text-sm font-medium text-gray-700 mb-1 line-clamp-2">
+                <h2 className="text-sm font-medium text-gray-700 mb-2 line-clamp-2 h-5">
                   {card.title}
                 </h2>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center mt-5">
                   <span className="mt-1">
                     <p className="text-base font-bold">
                       {card.price.toLocaleString("ru-RU")} so'm
