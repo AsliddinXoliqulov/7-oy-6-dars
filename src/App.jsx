@@ -8,7 +8,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const Home = lazy(() => import("./pages/Home"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Like = lazy(() => import("./pages/Like"));
-const Admin = lazy(() => import("./pages/admin"));
+const Admin = lazy(() => import('./pages/Admin'));
+
 
 const queryClient = new QueryClient();
 
